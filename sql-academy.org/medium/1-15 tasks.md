@@ -93,5 +93,28 @@ LEFT JOIN
 ON l.good_type_name = r.good_type_name
 WHERE r.good_type_name IS NULL
 ```
-
-
+### 27
+Узнать, сколько потрачено на каждую из групп товаров в 2005 году. Вывести название группы и сумм
+```sql
+SELECT
+    good_type_name,
+    SUM(amount * unit_price) as costs
+FROM Payments a
+JOIN Goods b
+    ON a.good = b.good_id
+JOIN GoodTypes c
+    ON b.type = c.good_type_id
+WHERE YEAR(date) = 2005
+GROUP BY good_type_name
+```
+### 27
+Узнать, сколько потрачено на каждую из групп товаров в 2005 году. Вывести название группы и сумм
+```sql
+SELECT 
+    DISTINCT TIMEDIFF
+                (
+                    (SELECT end_pair FROM Timepair WHERE id = 4),
+                    (SELECT start_pair FROM Timepair WHERE id = 2)
+                ) as time
+FROM Timepair
+```
