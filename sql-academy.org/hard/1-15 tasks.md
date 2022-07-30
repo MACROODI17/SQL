@@ -61,3 +61,14 @@ JOIN(
 GROUP BY room_id
 ) c ON a.room_id = c.room_id and a.end_date = c.end_date
 ```
+### 68
+Вывести идентификаторы всех владельцев комнат, что размещены на сервисе бронирования жилья и сумму, которую они заработали
+```sql
+SELECT 
+    owner_id,
+    SUM(case when ISNULL(total ) then 0 else total end) as total_earn
+FROM Rooms l
+LEFT JOIN Reservations r 
+    ON l.id = r.room_id
+GROUP BY owner_id
+```
