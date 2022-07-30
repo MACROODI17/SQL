@@ -1,3 +1,6 @@
+
+<img width="782" alt="task" src="https://user-images.githubusercontent.com/108750881/181903434-8b946565-a8b7-470f-82e0-7e9a000fd560.png">
+
 ### Первый способ
 ```sql
 WITH
