@@ -44,3 +44,20 @@ FROM Schedule l
 GROUP by teacher 
 HAVING COUNT(DISTINCT class) = (SELECT COUNT(DISTINCT class) FROM Schedule)
 ```
+### 68
+Для каждой комнаты, которую снимали как минимум 1 раз, найдите имя человека, снимавшего ее последний раз, и дату, когда он выехал
+```sql
+SELECT 
+    a.room_id,
+    name,
+    a.end_date
+FROM Reservations a
+JOIN Users b on a.user_id = b.id
+JOIN(
+    SELECT 
+        room_id,
+        max(end_date) as end_date
+    FROM Reservations
+GROUP BY room_id
+) c ON a.room_id = c.room_id and a.end_date = c.end_date
+```
