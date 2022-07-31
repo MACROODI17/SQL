@@ -3,7 +3,7 @@
 
 ```sql
 SELECT
-    max(YEAR(now()) - YEAR(birthday)) AS max_year
+    max(YEAR(NOW()) - YEAR(birthday)) AS max_year
 FROM Student a
 JOIN Student_in_class b
     ON a.id = b.student
@@ -52,21 +52,21 @@ SELECT
     name,
     a.end_date
 FROM Reservations a
-JOIN Users b on a.user_id = b.id
+JOIN Users b ON a.user_id = b.id
 JOIN(
     SELECT 
         room_id,
         max(end_date) as end_date
     FROM Reservations
 GROUP BY room_id
-) c ON a.room_id = c.room_id and a.end_date = c.end_date
+) c ON a.room_id = c.room_id AND a.end_date = c.end_date
 ```
 ### 68
 Вывести идентификаторы всех владельцев комнат, что размещены на сервисе бронирования жилья и сумму, которую они заработали
 ```sql
 SELECT 
     owner_id,
-    SUM(case when ISNULL(total ) then 0 else total end) as total_earn
+    SUM(CASE WHEN ISNULL(total ) THEN 0 ELSE total END) AS total_earn
 FROM Rooms l
 LEFT JOIN Reservations r 
     ON l.id = r.room_id
