@@ -21,9 +21,7 @@ tmp AS
     ORDER BY id_check
 )
 SELECT
-    id_check,
-    MAX(CASE WHEN category = 'обувь' THEN amt ELSE NULL END) AS amt_shoes,
-    MAX(CASE WHEN category = 'туризм' THEN amt ELSE NULL END) AS amt_tourism  
+    count(id_check) as amount 
 FROM tmp
 GROUP BY
     id_check
